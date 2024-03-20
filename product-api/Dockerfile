@@ -1,6 +1,6 @@
-FROM gradle:7.0.0-jdk11
-COPY --chown=gradle:gradle . .
+FROM maven:3.2.3-jdk-17
 WORKDIR .
-RUN gradle build -x test --no-daemon
+RUN mvn clean install
+COPY . .
 EXPOSE 8081
-CMD ["gradle", "bootRun"]
+CMD ["mvn", "spring-boot:run"]
